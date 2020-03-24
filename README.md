@@ -1,4 +1,4 @@
-# react-i18zen
+# I18zen
 
 Extreme simple and lightweight i18n for react projects
 
