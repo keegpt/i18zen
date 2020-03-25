@@ -1,13 +1,13 @@
 interface I18ZenDatabase {
-    [key: string]: any
+  [key: string]: any;
 }
 
 interface I18ZenContext {
-    __: (key: string, params?: any) => string;
-    changeLocale: (locale: string) => void
+  __: (key: string, params?: any) => string;
+  changeLocale: (locale: string) => void;
 }
 
 interface I18ZenRemoteLocale {
-    locale: string
-    url: string
+  locale: string;
+  url: string;
 }

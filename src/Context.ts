@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 const Context = React.createContext<I18ZenContext>({} as I18ZenContext);
 
