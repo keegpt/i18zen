@@ -21,20 +21,24 @@ export function I18ZenProvider({ locales, remoteLocales, initialLocale, fallback
         setCurrentLocale(locale);
     }
 
+    function getCurrentLocale(): string | null {
+        return currentLocale;
+    }
+
     function __(key: string, params?: any): string {
-        if(!currentLocale && !fallbackLocale) {
+        if (!currentLocale && !fallbackLocale) {
             return key;
         }
 
         let localeObj = null;
 
-        if(currentLocale) {
+        if (currentLocale) {
             localeObj = database[currentLocale];
         } else if (fallbackLocale) {
             localeObj = database[fallbackLocale];
         }
 
-        if(!localeObj) {
+        if (!localeObj) {
             return key;
         }
 
@@ -67,13 +71,17 @@ export function I18ZenProvider({ locales, remoteLocales, initialLocale, fallback
     }, []);
 
     return (
-        <Context.Provider value={{ changeLocale, __ }} >
+        <Context.Provider value={{ changeLocale, __, getCurrentLocale }} >
             {children}
         </Context.Provider>
     )
 }
 
 export function useI18Zen() {
-    const { __, changeLocale } = React.useContext<I18ZenContext>(Context);
-    return { __, changeLocale };
+    const { __, changeLocale, getCurrentLocale } = React.useContext<I18ZenContext>(Context);
+    return {
+        __,
+        changeLocale,
+        getCurrentLocale
+    };
 }
